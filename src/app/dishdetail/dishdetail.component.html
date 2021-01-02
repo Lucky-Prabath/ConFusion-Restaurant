@@ -19,10 +19,10 @@ fxLayoutGap.xs="0">
         <mat-card-content>
             <p>{{dish.description}}</p>
         </mat-card-content>
-        <mat-card-action>
+        <!-- <mat-card-action>
             <button mat-button>LIKE</button>
             <button mat-button>SHARE</button>
-        </mat-card-action>
+        </mat-card-action> -->
       </mat-card>
   </div>
 </div>
@@ -32,7 +32,7 @@ fxLayoutGap.xs="0">
 <div  *ngIf="dish" >
   <mat-list fxFlex>
         <h1>Comments</h1>
-        <mat-list-item *ngFor="let comment of comments">
+        <mat-list-item *ngFor="let comment of dish.comments">
             <p>
                 <span matLine>{{comment.comment}}</span>
                 <span matLine>{{comment.rating}} Stars</span>
