@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+// import { HttpModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -38,6 +40,7 @@ import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 
 import {MatSliderModule} from '@angular/material/slider';
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -70,12 +73,15 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule,
+    // HttpModule
   ],
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [
     LoginComponent

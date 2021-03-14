@@ -1,5 +1,5 @@
 import { Component, Directive, OnInit, ViewChild } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 
 @Component({
@@ -9,7 +9,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 })
 export class ContactComponent implements OnInit {
 
-  @ViewChild('fform') feedbackFormDirectvie;
+  @ViewChild('fform') feedbackFormDirectvie!: NgForm;
 
   feedbackForm!: FormGroup;
   feedback!: Feedback;
@@ -73,7 +73,7 @@ export class ContactComponent implements OnInit {
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         // clear previous error message (if any)
-        this.formErrors[field] = '';
+        this.formErrors[field]= '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
           const messages = this.validationMessages[field];
@@ -99,7 +99,7 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
-    this.feedbackFormDirectvie.resetForm();
+    this.feedbackFormDirectvie?.resetForm();
   }
 
 }

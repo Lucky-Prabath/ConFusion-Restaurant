@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { max, switchMap } from 'rxjs/operators';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Comment } from '../shared/comment';
 
 
@@ -15,7 +15,7 @@ import { Comment } from '../shared/comment';
 })
 export class DishdetailComponent implements OnInit {
 
-  @ViewChild('cform') commentFormDirectvie;
+  @ViewChild('cform') commentFormDirectvie:NgForm?;
 
   dish!: Dish;
   dishIds!: string[];
@@ -45,11 +45,12 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishService: DishService, 
     private route: ActivatedRoute, 
     private location: Location,
-    private fb:FormBuilder) {
-      this.createForm();
-     }
+    private fb:FormBuilder,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit(): void {
+    this.createForm();
+
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
     .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
