@@ -7,7 +7,7 @@ fxLayoutAlign.gt-md="space-around center"
 fxLayoutGap="10px" 
 fxLayoutGap.xs="0">
 
-<div fxFlex="40" *ngIf="dish">
+<div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
  <div fxFlex >
       <mat-card>
         <mat-card-header>
@@ -31,7 +31,7 @@ fxLayoutGap.xs="0">
   </div>
 </div>
 
-<div fxFlex="40" *ngIf="dish">
+<div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <!-- dish details -->
     <div>
         <mat-list fxFlex  >
